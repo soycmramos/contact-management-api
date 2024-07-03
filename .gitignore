@@ -132,3 +132,6 @@ dist
 
 # Mocha testing reports
 mochawesome-report/
+
+# Database
+.sqlite
