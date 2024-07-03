@@ -1,0 +1,245 @@
+{
+	"openapi": "3.0.2",
+	"info": {
+		"title": "Contact Management",
+		"version": "1.0.0",
+		"description": ""
+	},
+	"servers": [
+		{
+			"url": "http://localhost",
+			"description": ""
+		}
+	],
+	"paths": {
+		"/health": {
+			"head": {
+				"responses": {
+					"204": {
+						"description": "Successful response"
+					}
+				},
+				"operationId": "health"
+			}
+		},
+		"/auth/signup": {
+			"summary": "User authentication (Sign Up)",
+			"put": {
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/signUpRequest"
+							},
+							"examples": {
+								"signUpRequestExample": {
+									"value": {
+										"email": "user@example.com",
+										"password": "sy48CC@@"
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"User"
+				],
+				"responses": {
+					"201": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/signUpRespose"
+								},
+								"examples": {
+									"signUpResponseExample": {
+										"value": {
+											"status": "success",
+											"code": 200,
+											"title": "OK",
+											"message": "Successful",
+											"data": {},
+											"meta": {
+												"_timestamp": 5,
+												"_uuid": "some text",
+												"_path": "PUT /auth/signup"
+											}
+										}
+									}
+								}
+							}
+						},
+						"description": "Successful resource creation response"
+					}
+				},
+				"operationId": "signup"
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"meta": {
+				"description": "Meta data",
+				"required": [
+					"_timestamp",
+					"_uuid",
+					"_path"
+				],
+				"type": "object",
+				"properties": {
+					"_timestamp": {
+						"$ref": "#/components/schemas/_timestamp",
+						"description": ""
+					},
+					"_uuid": {
+						"$ref": "#/components/schemas/_uuid",
+						"description": ""
+					},
+					"_path": {
+						"$ref": "#/components/schemas/_path",
+						"description": ""
+					}
+				},
+				"example": {
+					"meta": {
+						"_timestamp": 1716953648,
+						"_uuid": "58dbea9b-e0bd-414b-ab7a-662e136b79a6",
+						"_path": "POST /auth/signin"
+					}
+				}
+			},
+			"signUpRequest": {
+				"description": "",
+				"required": [
+					"email",
+					"password"
+				],
+				"type": "object",
+				"properties": {
+					"email": {
+						"$ref": "#/components/schemas/email",
+						"description": ""
+					},
+					"password": {
+						"$ref": "#/components/schemas/password",
+						"description": ""
+					}
+				},
+				"example": {
+					"email": "email@example.com",
+					"password": "gWAWvKyYCpDXo8T"
+				}
+			},
+			"signUpRespose": {
+				"description": "",
+				"required": [
+					"status",
+					"code",
+					"title",
+					"message",
+					"data",
+					"meta"
+				],
+				"type": "object",
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/status",
+						"description": ""
+					},
+					"code": {
+						"$ref": "#/components/schemas/code",
+						"description": ""
+					},
+					"title": {
+						"$ref": "#/components/schemas/title",
+						"description": ""
+					},
+					"message": {
+						"$ref": "#/components/schemas/message",
+						"description": ""
+					},
+					"data": {
+						"$ref": "#/components/schemas/data",
+						"description": ""
+					},
+					"meta": {
+						"$ref": "#/components/schemas/meta",
+						"description": ""
+					}
+				},
+				"example": {
+					"status": "success",
+					"code": 200,
+					"title": "OK",
+					"message": "Request completed successfully",
+					"data": {},
+					"meta": {
+						"_timestamp": 1716953648,
+						"_uuid": "58dbea9b-e0bd-414b-ab7a-662e136b79a6",
+						"_path": "POST /auth/signin"
+					}
+				}
+			},
+			"responseBody": {
+				"description": "",
+				"type": "object"
+			},
+			"status": {
+				"description": "Response status",
+				"enum": [
+					"success",
+					"failure"
+				],
+				"type": "string",
+				"example": "success"
+			},
+			"code": {
+				"description": "Response code",
+				"type": "integer",
+				"example": "200"
+			},
+			"title": {
+				"description": "Response title",
+				"type": "string",
+				"example": "OK"
+			},
+			"message": {
+				"description": "Response message",
+				"type": "string",
+				"example": "Request completed successfully"
+			},
+			"data": {
+				"description": "",
+				"type": "object"
+			},
+			"_timestamp": {
+				"description": "Request date",
+				"type": "integer",
+				"example": "1716953648"
+			},
+			"_uuid": {
+				"description": "Unique identifier of the request",
+				"pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+				"type": "string",
+				"example": "58dbea9b-e0bd-414b-ab7a-662e136b79a6"
+			},
+			"_path": {
+				"description": "Request path",
+				"type": "string",
+				"example": "POST /auth/signin"
+			},
+			"email": {
+				"description": "User email",
+				"type": "string",
+				"example": "user@example.com"
+			},
+			"password": {
+				"description": "User password",
+				"type": "string",
+				"example": "bc6KOxA0K9"
+			}
+		}
+	}
+}
