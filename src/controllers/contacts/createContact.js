@@ -26,7 +26,7 @@ const createContact = async (req, res) => {
 
 	try {
 		await pool.query('INSERT INTO contacts (id, name, phone) VALUES (?, ?, ?)', [id, name, phone])
-		const [createdContact] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
+		const [[createdContact]] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
 		return res
 			.status(StatusCodes.CREATED)
 			.json({

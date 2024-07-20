@@ -5,7 +5,7 @@ const deleteContactById = async (req, res) => {
 	const { params: { id }, meta } = req
 
 	try {
-		const { affectedRows } = await pool.query('DELETE FROM contacts WHERE id = ?', id)
+		const [{ affectedRows }] = await pool.query('DELETE FROM contacts WHERE id = ?', id)
 
 		if (!Boolean(affectedRows)) {
 			return res

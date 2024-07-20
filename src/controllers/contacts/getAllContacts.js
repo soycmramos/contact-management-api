@@ -4,7 +4,7 @@ import pool from '../../database/pool.js'
 const getAllContacts = async (req, res) => {
 	const { meta } = req
 	try {
-		const contacts = await pool.query('SELECT * FROM contacts')
+		const [contacts] = await pool.query('SELECT * FROM contacts')
 
 		if (!contacts.length) {
 			return res

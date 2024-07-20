@@ -5,7 +5,7 @@ const getContactById = async (req, res) => {
 	const { params: { id }, meta } = req
 
 	try {
-		const [contact] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
+		const [[contact]] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
 
 		if (!contact) {
 			return res

@@ -23,7 +23,7 @@ const updateContactById = async (req, res) => {
 	data = data.map(x => x && x.trim())
 
 	try {
-		const { affectedRows } = await pool.query('UPDATE contacts SET name = IFNULL(?, name), phone = IFNULL(?, phone) WHERE id = ?', [name, phone, id])
+		const [{ affectedRows }] = await pool.query('UPDATE contacts SET name = IFNULL(?, name), phone = IFNULL(?, phone) WHERE id = ?', [name, phone, id])
 
 		if (!Boolean(affectedRows)) {
 			return res
@@ -38,7 +38,7 @@ const updateContactById = async (req, res) => {
 				})
 		}
 
-		const [contact] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
+		const [[contact]] = await pool.query('SELECT * FROM contacts WHERE id = ?', id)
 
 		return res
 			.status(StatusCodes.OK)
