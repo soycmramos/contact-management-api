@@ -1,5 +1,5 @@
 # Contact Management API
-Express application to manage contacts (CRUD) with MariaDB database
+Express application to manage contacts (CRUD) with MySQL database
 
 ## Development setup
 
